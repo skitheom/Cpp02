@@ -6,11 +6,12 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:39:52 by sakitaha          #+#    #+#             */
-/*   Updated: 2024/12/06 02:32:45 by sakitaha         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:40:20 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <cmath>
 #include <iostream>
 
 Fixed::Fixed() : fixedPointNumber_(0) {
