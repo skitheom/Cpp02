@@ -179,7 +179,10 @@ Orthodox Canonical Form（正統派標準形）の導入
 * toInt(): 固定小数点数を整数に変換
 * << 演算子をオーバーロードして、固定小数点数を出力ストリームに挿入可能にする
 
+### Exercise 02: BSP
 
+[Binary Space Partitioning](https://www.geeksforgeeks.org/binary-space-partitioning/)
 
+空間を再帰的に2つの部分に分割して構造化するアルゴリズムやデータ構造のこと
 
-
+-> この課題とは関係ない
