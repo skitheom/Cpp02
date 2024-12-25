@@ -6,7 +6,7 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:17:24 by sakitaha          #+#    #+#             */
-/*   Updated: 2024/12/06 01:35:12 by sakitaha         ###   ########.fr       */
+/*   Updated: 2024/12/25 18:15:28 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ public:
   Fixed(const int value);
   Fixed(const float value);
   Fixed(const Fixed &other);
-  ~Fixed();
   Fixed &operator=(const Fixed &other);
+  ~Fixed();
 
   int getRawBits() const;
   void setRawBits(int const raw);
