@@ -6,7 +6,7 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:39:52 by sakitaha          #+#    #+#             */
-/*   Updated: 2024/12/06 02:31:34 by sakitaha         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:17:45 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ Fixed::Fixed(const Fixed &other) {
   *this = other;
 }
 
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
-
 Fixed &Fixed::operator=(const Fixed &other) {
   std::cout << "Copy assignment operator called" << std::endl;
   if (this != &other) {
@@ -31,6 +29,8 @@ Fixed &Fixed::operator=(const Fixed &other) {
   }
   return *this;
 }
+
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 int Fixed::getRawBits() const {
   std::cout << "getRawBits member function called" << std::endl;
