@@ -14,8 +14,7 @@ CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 RM       := rm -f
 TARGET   := program
-SRCS     := main.cpp Fixed.cpp Point.cpp bsp.cpp
-# SRCS     := main.cpp Fixed.cpp
+SRCS     := main.cpp Fixed.cpp
 OBJS     := $(SRCS:.cpp=.o)
 
 all: $(TARGET)
@@ -40,10 +39,13 @@ test: $(TARGET)
 	@echo "== Tests Completed =="
 
 debug: CXXFLAGS += -fsanitize=address -g
-debug: $(TARGET)
+debug: re
 	./$(TARGET)
 
 valgrind: all
 	valgrind --leak-check=full ./$(TARGET)
+
+leak: all
+	leaks -q -atExit -- ./$(TARGET)
 
 .PHONY: all clean fclean re test debug leaks valgrind

@@ -6,7 +6,7 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:39:52 by sakitaha          #+#    #+#             */
-/*   Updated: 2024/12/07 00:17:24 by sakitaha         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:46:15 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,12 @@
 
 Fixed::Fixed() : fixedPointNumber_(0) {}
 
-Fixed::Fixed(const int value) {
-  this->fixedPointNumber_ = value << this->fractionalBits_;
-}
+Fixed::Fixed(const int value) : fixedPointNumber_(value << fractionalBits_) {}
 
-Fixed::Fixed(const float value) {
-  this->fixedPointNumber_ = (int)roundf(value * (1 << this->fractionalBits_));
-}
+Fixed::Fixed(const float value)
+    : fixedPointNumber_((int)roundf(value * (1 << fractionalBits_))) {}
 
-Fixed::Fixed(const Fixed &other) { *this = other; }
-
-Fixed::~Fixed() {}
+Fixed::Fixed(const Fixed &other) : fixedPointNumber_(other.fixedPointNumber_) {}
 
 Fixed &Fixed::operator=(const Fixed &other) {
   if (this != &other) {
@@ -34,6 +29,8 @@ Fixed &Fixed::operator=(const Fixed &other) {
   }
   return *this;
 }
+
+Fixed::~Fixed() {}
 
 int Fixed::getRawBits() const { return this->fixedPointNumber_; }
 
@@ -47,30 +44,7 @@ int Fixed::toInt() const {
   return this->fixedPointNumber_ >> this->fractionalBits_;
 }
 
-std::ostream &operator<<(std::ostream &os, const Fixed &fixed) {
-  os << fixed.toFloat();
-  return os;
-}
-
-Fixed Fixed::operator+(const Fixed &rhs) const {
-  return Fixed(this->toFloat() + rhs.toFloat());
-}
-
-Fixed Fixed::operator-(const Fixed &rhs) const {
-  return Fixed(this->toFloat() - rhs.toFloat());
-}
-
-Fixed Fixed::operator*(const Fixed &rhs) const {
-  return Fixed(this->toFloat() * rhs.toFloat());
-}
-
-Fixed Fixed::operator/(const Fixed &rhs) const {
-  if (rhs.toFloat() == 0) {
-    throw std::runtime_error("Division by zero");
-  }
-  return Fixed(this->toFloat() / rhs.toFloat());
-}
-
+// The 6 comparison operators: >, <, >=, <=, == and !=
 bool Fixed::operator>(const Fixed &rhs) const {
   return (this->getRawBits() > rhs.getRawBits());
 }
@@ -93,4 +67,80 @@ bool Fixed::operator==(const Fixed &rhs) const {
 
 bool Fixed::operator!=(const Fixed &rhs) const {
   return (this->getRawBits() != rhs.getRawBits());
+}
+
+// The 4 arithmetic operators: +,-, *, and /
+Fixed Fixed::operator+(const Fixed &rhs) const {
+  Fixed res;
+  res.fixedPointNumber_ = this->fixedPointNumber_ + rhs.fixedPointNumber_;
+  return res;
+}
+
+Fixed Fixed::operator-(const Fixed &rhs) const {
+  Fixed res;
+  res.fixedPointNumber_ = this->fixedPointNumber_ - rhs.fixedPointNumber_;
+  return res;
+}
+
+Fixed Fixed::operator*(const Fixed &rhs) const {
+  Fixed res;
+  res.fixedPointNumber_ =
+      static_cast<int>((static_cast<int64_t>(this->fixedPointNumber_) *
+                        static_cast<int64_t>(rhs.fixedPointNumber_)) >>
+                       fractionalBits_);
+  return res;
+}
+
+Fixed Fixed::operator/(const Fixed &rhs) const {
+  if (rhs.fixedPointNumber_ == 0) {
+    throw std::runtime_error("Division by zero");
+  }
+  Fixed res;
+  res.fixedPointNumber_ =
+      (this->fixedPointNumber_ << fractionalBits_) / rhs.fixedPointNumber_;
+  return res;
+}
+
+// The 4 increment/decrement (pre and post)
+Fixed &Fixed::operator++() {
+  this->fixedPointNumber_++;
+  return *this;
+}
+
+Fixed Fixed::operator++(int) {
+  Fixed tmp = *this;
+  this->fixedPointNumber_++;
+  return tmp;
+}
+
+Fixed &Fixed::operator--() {
+  this->fixedPointNumber_--;
+  return *this;
+}
+
+Fixed Fixed::operator--(int) {
+  Fixed tmp = *this;
+  this->fixedPointNumber_--;
+  return tmp;
+}
+
+Fixed &Fixed::min(Fixed &fixed1, Fixed &fixed2) {
+  return (fixed1 < fixed2) ? fixed1 : fixed2;
+}
+
+const Fixed &Fixed::min(const Fixed &fixed1, const Fixed &fixed2) {
+  return (fixed1 < fixed2) ? fixed1 : fixed2;
+}
+
+Fixed &Fixed::max(Fixed &fixed1, Fixed &fixed2) {
+  return (fixed1 > fixed2) ? fixed1 : fixed2;
+}
+
+const Fixed &Fixed::max(const Fixed &fixed1, const Fixed &fixed2) {
+  return (fixed1 > fixed2) ? fixed1 : fixed2;
+}
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed) {
+  os << fixed.toFloat();
+  return os;
 }
