@@ -5,7 +5,7 @@
 
 ## Topics
 
-* Ad*hoc polymorphism（アドホック多態性）
+* Adhoc polymorphism（アドホック多態性）
 * 演算子のオーバーロード
 * Orthodox Canonical Form
 
@@ -157,27 +157,3 @@ floating point numberをprintする関数の実装例
 
 https://web.archive.org/web/20231224143018/https://inst.eecs.berkeley.edu/~cs61c/sp06/handout/fixedpt.html
 
-## Exercises
-### Exercise 00: My First Class in Orthodox Canonical Form
-
-Orthodox Canonical Form（正統派標準形）の導入
-固定小数点数（fixed*point number）を表すクラスの構築
-* 固定小数点数の値を格納する整数型変数
-* フラクショナルビットの数を表す静的定数整数（値は8）
-* getRawBits() 関数: 固定小数点数の生値を返す
-* setRawBits(int const raw) 関数: 生値を設定
-
-### Exercise 01: Towards a more useful fixed*point number class
-
-整数や浮動小数点数を固定小数点数（fixed*point number）として内部的に扱う
-* toFloat(): 固定小数点数を浮動小数点数に変換
-* toInt(): 固定小数点数を整数に変換
-* << 演算子をオーバーロードして、固定小数点数を出力ストリームに挿入可能にする
-
-### Exercise 02: BSP
-
-[Binary Space Partitioning](https://www.geeksforgeeks.org/binary-space-partitioning/)
-
-空間を再帰的に2つの部分に分割して構造化するアルゴリズムやデータ構造のこと
-
-三角形の中にあるかどうかを判定する
