@@ -32,16 +32,16 @@ public:
 
 ## Exercises
 ### Exercice 00 : Mon premier canon
-Orthodox Canonical Formの理解
+- Orthodox Canonical Formの理解
 
 ### Exercice 01 : Premiers pas vers une classe utile
-ex.00を元に、Fixedクラス（固定小数点）の実装
+- ex.00を元に、Fixedクラス（固定小数点）の実装
 
 ### Exercice 02 : Maintenant, on peut parler
-Fixedクラスを各算術演算子に対応
+- Fixedクラスを各算術演算子, 比較演算子に対応
 
 ### Exercice 03 : BSP
-Fixedクラスを利用して、三角形の内外判定を実装
+- Fixedクラスを利用して、三角形の内外判定を実装
 
 ## Resources
 [CPP Module 02(For 42 École Students Only)](https://projects.intra.42.fr/projects/cpp-module-02)
