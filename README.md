@@ -1,10 +1,7 @@
-# Cpp02
+# CPP Module 02
 42 project
 
-# C++ Module 02
-
 ## Topics
-
 * Adhoc polymorphism（アドホック多態性）
 * 演算子のオーバーロード
 * Orthodox Canonical Form
@@ -32,7 +29,23 @@ public:
 
 #endif
 ```
+
+## Exercises
+### Exercice 00 : Mon premier canon
+Orthodox Canonical Formの理解
+
+### Exercice 01 : Premiers pas vers une classe utile
+ex.00を元に、Fixedクラス（固定小数点）の実装
+
+### Exercice 02 : Maintenant, on peut parler
+Fixedクラスを各算術演算子に対応
+
+### Exercice 03 : BSP
+Fixedクラスを利用して、三角形の内外判定を実装
+
 ## Resources
+[CPP Module 02(For 42 École Students Only)](https://projects.intra.42.fr/projects/cpp-module-02)
+
 [Understanding and Using Floating Point Numbers](https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html)
 
 整数型（int）は accuracy に優れるが precision に欠ける（端数を表現できない）。 浮動小数点型（float）は precision に優れる（近似的に端数のある数を表せる）が、 accuracy に欠ける（データサイズが有限なため、例えば 1/3 を正確に表せない）
